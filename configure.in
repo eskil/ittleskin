@@ -1,0 +1,31 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(configure.in)
+AM_INIT_AUTOMAKE(ittleskin, 0.2)
+AM_CONFIG_HEADER(config.h)
+
+dnl Pick up the Gnome macros.
+dnl AM_ACLOCAL_INCLUDE(macros)
+
+AC_ISC_POSIX
+AC_PROG_CC
+AM_PROG_CC_STDC
+AM_PROG_LIBTOOL
+AC_HEADER_STDC
+
+PKG_CHECK_MODULES(LITTLESKIN, libpanelapplet-2.0 >= 1.5.22 eel-2.0 >= 1.1.12 glib-2.0 >= 2.0.1 gtk+-2.0 >= 2.0.2 gdk-pixbuf-2.0 >= 2.0.2 gnome-vfs-2.0 >= 1.9.15)
+AC_SUBST(LITTLESKIN_CFLAGS)
+AC_SUBST(LITTLESKIN_LIBS)
+
+dnl Subst PACKAGE_PIXMAPS_DIR.
+PACKAGE_PIXMAPS_DIR="$datadir/pixmaps/${PACKAGE}"
+AC_SUBST(PACKAGE_PIXMAPS_DIR)
+
+AC_OUTPUT([
+Makefile
+src/Makefile
+themes/Makefile
+themes/lcd/Makefile
+liblittleskin.spec
+littleskin.pc
+])
+
